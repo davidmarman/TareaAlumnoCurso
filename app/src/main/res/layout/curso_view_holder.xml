@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="#2E2E2E"
+    app:cardCornerRadius="12dp"
+    android:elevation="6dp"
+    android:layout_margin="16dp"
+    >
+
+    <TextView
+        android:id="@+id/txtNombreCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Curso"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:textColor="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/btnModificar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_menu_edit"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="12dp"
+        app:tint="#13AD6E" />
+
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="12dp"
+        />
+
+
+
+
+</androidx.cardview.widget.CardView>
