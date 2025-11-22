@@ -14,9 +14,9 @@ import com.example.tareaalumnocurso.entidades.Curso;
 public abstract class AlumnoCursoDB extends RoomDatabase{
     private static volatile AlumnoCursoDB INSTANCIA;
 
-    public abstract getAlumnoDao(){}
+    public abstract AlumnoDao getAlumnoDao();
 
-    public abstract getCursoDao(){}
+    public abstract CursoDao getCursoDao();
 
     public static AlumnoCursoDB obtenerInstancia(final Context context) {
         if (INSTANCIA == null) {

@@ -22,7 +22,7 @@ public interface AlumnoDao {
     LiveData<List<Alumno>> getAlumnoByCurso(int cursoId);
 
     @Query("SELECT * FROM alumno WHERE id LIKE :uuid")
-    Alumno getAlumno(String uuid);
+    Alumno getAlumno(int uuid);
 
     @Insert
     void addAlumno(Alumno alumno);
