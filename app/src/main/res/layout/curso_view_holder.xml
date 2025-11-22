@@ -3,7 +3,7 @@
     android:layout_width="150dp"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="#2E2E2E"
+    android:backgroundTint="@color/fondo_view_holder"
     app:cardCornerRadius="12dp"
     android:elevation="6dp"
     android:layout_margin="16dp"

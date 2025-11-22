@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.tareaalumnocurso.entidades.Alumno;
+import com.example.tareaalumnocurso.entidades.Curso;
 import com.example.tareaalumnocurso.repositorio.AlumnoRepositorio;
 
 import java.util.List;
@@ -56,8 +57,8 @@ public class AlumnoViewModel extends AndroidViewModel {
         return alumnoSeleccionado;
     }
 
-    public void setCursoPadreSeleccionado(Alumno a){
-        cursoPadreSeleccionado.setValue(a.getIdCurso());
+    public void setCursoPadreSeleccionado(Curso c){
+        cursoPadreSeleccionado.setValue(c.getId());
     }
 
     MutableLiveData<Integer>getCursoPadreSeleccionado(){
