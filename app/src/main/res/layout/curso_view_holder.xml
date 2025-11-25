@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="150dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/fondo_view_holder"
     app:cardCornerRadius="12dp"
     android:elevation="6dp"
-    android:layout_margin="16dp"
+    android:layout_margin="8dp"
+    app:cardUseCompatPadding="true"
     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
 
     <TextView
         android:id="@+id/txtNombreCurso"
@@ -18,26 +26,38 @@
         android:padding="12dp"
         android:textColor="@color/white"/>
 
-    <ImageButton
-        android:id="@+id/btnModificar"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@android:drawable/ic_menu_edit"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_gravity="bottom|left"
-        android:layout_margin="12dp"
-        app:tint="#13AD6E" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/btnEliminar"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@android:drawable/ic_delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="12dp"
-        />
+            <ImageButton
+                android:id="@+id/btnModificar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_edit"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_gravity="bottom|left"
+                android:layout_margin="12dp"
+                app:tint="#13AD6E" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/btnEliminar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="12dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 

@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -33,6 +36,49 @@ public class ListCursosFr extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return (binding= FragmentListCursosBinding.inflate(inflater,container,false)).getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //View model compartido
+        cursoViewModel = new ViewModelProvider(requireActivity()).get(CursoViewModel.class);
+        alumnoViewModel = new ViewModelProvider(requireActivity()).get(AlumnoViewModel.class);
+        navController = Navigation.findNavController(view);
+
+        //Navegar a nuevo curso cuando se hace click en el floatting button
+        binding.btnNuevoCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.nuevoCursoFr);
+            }
+        });
+
+        //Navegar a nuevo alumno
+        binding.btnNuevoAlumno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cursoViewModel.setCursoSeleccionado(null);
+                navController.navigate(R.id.nuevoAlumnoFr);
+            }
+        });
+
+        // Creamos el adaptador
+        CursoAdapter cursoAdapter = new CursoAdapter();
+
+        //Asociar el adaptador al recyclerView
+        binding.recyclerView.setAdapter(cursoAdapter);
+
+        //Obtener el array de elementos
+        cursoViewModel.obtener().observe(getViewLifecycleOwner(), new Observer<List<Curso>>() {
+            @Override
+            public void onChanged(List<Curso> cursos) {
+                cursoAdapter.establecerLista(cursos);
+            }
+        });
+
+
     }
 
     /************************************************************************************
@@ -63,10 +109,14 @@ public class ListCursosFr extends Fragment {
                 @Override
                 public void onClick(View v) {
                     alumnoViewModel.setCursoPadreSeleccionado(c);
-                    //categoriaViewModel.seleccionar(c);
-                    //navController.navigate(R.id.action_listadoCategorias_to_listadoTareasFr);
+                    cursoViewModel.setCursoSeleccionado(c);
+                    navController.navigate(R.id.listAlumnosFr);
                 }
             });
+
+
+
+
 
         }
 
@@ -98,7 +148,7 @@ public class ListCursosFr extends Fragment {
         public CursoViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            txtNombreCurso = itemView.findViewById(R.id.txtTituloCursos);
+            txtNombreCurso = itemView.findViewById(R.id.txtNombreCurso);
         }
 
         public void bindData(Curso c) {

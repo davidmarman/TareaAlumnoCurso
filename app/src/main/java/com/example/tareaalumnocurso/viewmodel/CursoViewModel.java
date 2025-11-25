@@ -31,15 +31,15 @@ public class CursoViewModel extends AndroidViewModel {
         return cursoRepositorio.obtenerById(id);
     }
 
-    void insertar(Curso c){
+    public void insertar(Curso c){
         cursoRepositorio.insertar(c);
     }
 
-    void eliminar(Curso c){
+    public void eliminar(Curso c){
         cursoRepositorio.eliminar(c);
     }
 
-    void actualizar(Curso c, String nombre){
+    public void actualizar(Curso c, String nombre){
         cursoRepositorio.actualizar(c,nombre);
     }
 

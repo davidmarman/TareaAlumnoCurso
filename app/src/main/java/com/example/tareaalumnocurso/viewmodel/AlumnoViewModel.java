@@ -37,15 +37,15 @@ public class AlumnoViewModel extends AndroidViewModel {
         return alumnoRepositorio.obtenerById(id);
     }
 
-    void insertar(Alumno a){
+    public void insertar(Alumno a){
         alumnoRepositorio.insertar(a);
     }
 
-    void eliminar(Alumno a){
+    public void eliminar(Alumno a){
         alumnoRepositorio.eliminar(a);
     }
 
-    void actualizar(Alumno a){
+    public void actualizar(Alumno a){
         alumnoRepositorio.actualizar(a);
     }
 
@@ -53,7 +53,7 @@ public class AlumnoViewModel extends AndroidViewModel {
         alumnoSeleccionado.setValue(a);
     }
 
-    MutableLiveData<Alumno>getAlumnoSeleccionado(){
+    public MutableLiveData<Alumno>getAlumnoSeleccionado(){
         return alumnoSeleccionado;
     }
 
@@ -61,7 +61,7 @@ public class AlumnoViewModel extends AndroidViewModel {
         cursoPadreSeleccionado.setValue(c.getId());
     }
 
-    MutableLiveData<Integer>getCursoPadreSeleccionado(){
+    public MutableLiveData<Integer>getCursoPadreSeleccionado(){
         return cursoPadreSeleccionado;
     }
 

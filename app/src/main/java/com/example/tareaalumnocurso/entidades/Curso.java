@@ -15,7 +15,7 @@ public class Curso {
     int id;
 
     @ColumnInfo(name = "nombre")
-    String nombre;
+    private String nombre;
 
     public Curso(String nombre){
         this.nombre = nombre;
@@ -23,6 +23,10 @@ public class Curso {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id){
+        this.id=id;
     }
 
     public String getNombre() {

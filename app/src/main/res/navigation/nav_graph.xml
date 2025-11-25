@@ -15,4 +15,14 @@
         android:name="com.example.tareaalumnocurso.listAlumnosFr"
         android:label="fragment_list_alumnos"
         tools:layout="@layout/fragment_list_alumnos" />
+    <fragment
+        android:id="@+id/nuevoAlumnoFr"
+        android:name="com.example.tareaalumnocurso.NuevoAlumnoFr"
+        android:label="fragment_nuevo_alumno"
+        tools:layout="@layout/fragment_nuevo_alumno" />
+    <fragment
+        android:id="@+id/nuevoCursoFr"
+        android:name="com.example.tareaalumnocurso.NuevoCursoFr"
+        android:label="fragment_nuevo_curso"
+        tools:layout="@layout/fragment_nuevo_curso" />
 </navigation>
