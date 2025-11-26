@@ -83,6 +83,9 @@ public class listAlumnosFr extends Fragment {
         //Creamos el adaptadpr
         ElementosAdapter elementosAdapter = new ElementosAdapter();
 
+        //Eliminar parpadeo de la animacion
+        ((androidx.recyclerview.widget.SimpleItemAnimator) binding.recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+
 
         // Asociar el adaptador al recyclerView
         binding.recyclerView.setAdapter(elementosAdapter);
@@ -134,6 +137,12 @@ public class listAlumnosFr extends Fragment {
 
             holder.binding.layoutDetalles.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
+            // Cambiar el fondo del item si está activo
+            holder.itemView.setActivated(isExpanded);
+
+            // Rotar la flechita
+            holder.binding.imgArrow.setRotation(isExpanded ? 180f : 0f);
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -143,7 +152,7 @@ public class listAlumnosFr extends Fragment {
                     if(posicionActual == RecyclerView.NO_POSITION) return;
 
                     // Transicion Suave
-                    android.transition.TransitionManager.beginDelayedTransition((ViewGroup) holder.itemView.getParent());
+                    android.transition.TransitionManager.beginDelayedTransition(binding.recyclerView);
 
                     int previousExpanded = expandedPosition;
 
