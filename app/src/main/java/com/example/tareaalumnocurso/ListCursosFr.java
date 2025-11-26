@@ -1,5 +1,7 @@
 package com.example.tareaalumnocurso;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tareaalumnocurso.databinding.CursoViewHolderBinding;
 import com.example.tareaalumnocurso.databinding.FragmentListCursosBinding;
@@ -64,6 +68,7 @@ public class ListCursosFr extends Fragment {
             }
         });
 
+
         // Creamos el adaptador
         CursoAdapter cursoAdapter = new CursoAdapter();
 
@@ -92,8 +97,7 @@ public class ListCursosFr extends Fragment {
         @NonNull
         @Override
         public CursoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.curso_view_holder,parent,false);
-            return new CursoViewHolder(view);
+            return new CursoViewHolder(CursoViewHolderBinding.inflate(getLayoutInflater(),parent,false));
         }
 
         @Override
@@ -101,7 +105,24 @@ public class ListCursosFr extends Fragment {
 
             Curso c =cursoList.get(position);
 
-            holder.txtNombreCurso.setText(c.getNombre());
+            holder.binding.txtNombreCurso.setText(c.getNombre());
+
+            holder.binding.btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDeleteConfirmationDialog(getContext(),c);
+                }
+            });
+
+            holder.binding.btnModificar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cursoViewModel.setCursoSeleccionado(c);
+
+                    navController.navigate(R.id.modificarCursoFr);
+
+                }
+            });
 
 
             //implementar la pulsación en el reciclerView
@@ -114,10 +135,32 @@ public class ListCursosFr extends Fragment {
                 }
             });
 
+        }
 
-
-
-
+        /*
+         * Muestra el diálogo de confirmación antes de borrar una tarea.
+         */
+        private void showDeleteConfirmationDialog(Context context, Curso c) {
+            new AlertDialog.Builder(context)
+                    // Título del diálogo
+                    .setTitle("Confirmar Borrado")
+                    // Pregunta de comprobación
+                    .setMessage("¿Está seguro de borrar este curso: \"" +
+                            c.getNombre() + "\"? Se borraran todos los alumnos relacionados. Esta acción es irreversible.")
+                    // Botón de confirmación (Positivo)
+                    .setPositiveButton("Sí, Borrar", (dialog, which) -> {
+                        // Si el usuario hace clic en "Sí, Borrar",ejecutamos la acciónalumnoViewModel.eliminar(a);
+                        cursoViewModel.eliminar(c);
+                        Toast.makeText(context, "Curso '" + c.getNombre() +
+                                "' eliminado.", Toast.LENGTH_SHORT).show();
+                    })
+                    // Botón de cancelación (Negativo)
+                    .setNegativeButton("Cancelar", (dialog, which) -> {
+                        // Si el usuario hace clic en "Cancelar", simplementese cierra el diálogo
+                        dialog.dismiss();
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert) // Icono de alerta
+                    .show();
         }
 
         @Override
@@ -143,17 +186,14 @@ public class ListCursosFr extends Fragment {
      **********************************************************************************/
     class CursoViewHolder extends RecyclerView.ViewHolder
     {
-        TextView txtNombreCurso;
+        final CursoViewHolderBinding binding;
 
-        public CursoViewHolder(@NonNull View itemView)
+        public CursoViewHolder(CursoViewHolderBinding binding)
         {
-            super(itemView);
-            txtNombreCurso = itemView.findViewById(R.id.txtNombreCurso);
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        public void bindData(Curso c) {
-            txtNombreCurso.setText(c.getNombre());
-        }
     }
 
 

@@ -25,4 +25,14 @@
         android:name="com.example.tareaalumnocurso.NuevoCursoFr"
         android:label="fragment_nuevo_curso"
         tools:layout="@layout/fragment_nuevo_curso" />
+    <fragment
+        android:id="@+id/modificarAlumnoFr"
+        android:name="com.example.tareaalumnocurso.ModificarAlumnoFr"
+        android:label="fragment_modificar_alumno"
+        tools:layout="@layout/fragment_modificar_alumno" />
+    <fragment
+        android:id="@+id/modificarCursoFr"
+        android:name="com.example.tareaalumnocurso.ModificarCursoFr"
+        android:label="fragment_modificar_curso"
+        tools:layout="@layout/fragment_modificar_curso" />
 </navigation>

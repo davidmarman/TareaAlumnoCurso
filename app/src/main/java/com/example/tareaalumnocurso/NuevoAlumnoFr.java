@@ -83,6 +83,7 @@ public class NuevoAlumnoFr extends Fragment {
                 // Validamos que este entre cero y diez
                 if(nota < 0 || nota > 10){
                     Toast.makeText(getContext(),"La nota tiene que estar entre 0 y 10",Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (cursosPosibles != null){
@@ -121,6 +122,17 @@ public class NuevoAlumnoFr extends Fragment {
 
         cursoViewModel.obtener().observe(getViewLifecycleOwner(),cursos -> {
             cursosPosibles = cursos;
+
+
+            if (cursos == null || cursos.isEmpty()) {
+                Toast.makeText(getContext(), "Debes crear un CURSO primero", Toast.LENGTH_LONG).show();
+                binding.btnGuardar.setEnabled(false); // Desactivamos el botón guardar
+                return; // Salimos para no intentar llenar el spinner
+            } else {
+                binding.btnGuardar.setEnabled(true); // Reactivamos si hay cursos
+            }
+
+
 
             List<String> nombres = new ArrayList<>();
             for(Curso c : cursos){
